@@ -33,14 +33,14 @@ y = np.array(df['label'])
 
 X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.2)
 
-clf = svm.SVR()
+clf = svm.SVR(gamma='scale')
 clf.fit(X_train, y_train)
 confidence = clf.score(X_test, y_test)
 print(confidence)
 
 clf = LinearRegression(n_jobs=-1)
 for k in ['linear','poly','rbf','sigmoid']:
-    clf = svm.SVR(kernel=k)
+    clf = svm.SVR(kernel=k,gamma='scale')
     clf.fit(X_train, y_train)
     confidence = clf.score(X_test, y_test)
     print(k,confidence)
